@@ -18,13 +18,13 @@ function RatingsApp({
   }
 
   function getMeta(productId) {
-    axios.get(`/meta/${productId}`)
+    axios.get(`http://localhost:3001/meta/${productId}`)
       .then((response) => setCurrentMeta(response.data))
       .catch((err) => (console.log(err)));
   }
 
   function getReviews() {
-    axios.get(`/reviews/${currentProduct}`)
+    axios.get(`http://localhost:3001/reviews/${currentProduct}`)
       .then((response) => setCurrentItem(response.data))
       .then(() => getMeta(currentProduct))
       .catch((err) => (console.log(err)));
@@ -42,13 +42,13 @@ function RatingsApp({
   }
 
   function addReview(message) {
-    axios.post('/reviews/addReview', message)
+    axios.post('http://localhost:3001/reviews/addReview', message)
       .then((response) => setHelpfulCount(helpfulCount + 1))
       .catch((error) => console.log('error posting to server', error));
   }
 
   function postHelpful(ID) {
-    axios.put('/reviews/putHelpful', ID)
+    axios.put('http://localhost:3001/reviews/putHelpful', ID)
       .then((response) => console.log('POST new helpful request to server successful', response))
       .then(() => getReviews())
       .catch((error) => console.log('error posting to server', error));
@@ -56,7 +56,7 @@ function RatingsApp({
 
   function postReport(ID) {
     console.log(ID);
-    axios.put('/reviews/putReport', ID)
+    axios.put('http://localhost:3001/reviews/putReport', ID)
       .then((response) => console.log('POST new report request to server successful', response))
       .catch((error) => console.log('error posting to server', error));
   }
@@ -66,7 +66,7 @@ function RatingsApp({
   }
 
   useEffect(() => {
-    axios.get(`/reviews/${currentProduct}`)
+    axios.get(`http://localhost:3001/reviews/${currentProduct}`)
       .then((response) => setCurrentItem(response.data))
       .then(() => getMeta(currentProduct))
       .catch((err) => (console.log(err)));

@@ -18,7 +18,7 @@ function Overview({
   const [currentPhotos, setCurrentPhotos] = useState([]);
   const [currentThumbnails, setCurrentThumbnails] = useState([]);
   useEffect(() => {
-    axios.get(`/products/${currentProduct}`)
+    axios.get(`http://localhost:3001/products/${currentProduct}`)
       .then((response) => {
         setProduct(response.data);
         setCurrentProductName(response.data.name);
@@ -26,7 +26,7 @@ function Overview({
       .catch((err) => {
         console.log(err);
       });
-    axios.get(`/styles/${currentProduct}`)
+    axios.get(`http://localhost:3001/styles/${currentProduct}`)
       .then((response) => {
         setStyles(response.data.results);
         setCurrentStyle(response.data.results[0]);

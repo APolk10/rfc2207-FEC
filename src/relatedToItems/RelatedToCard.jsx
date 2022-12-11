@@ -6,11 +6,11 @@ function RelatedToCard({ id, setCurrentProduct, isDarkMode }) {
   const [productInfo, setProductInfo] = useState({});
   const [productImage, setProductImage] = useState('');
   useEffect(() => {
-    axios.get(`/products/${id}`)
+    axios.get(`http://localhost:3001/products/${id}`)
       .then((response) => {
         setProductInfo(response.data);
       });
-    axios.get(`/styles/${id}`)
+    axios.get(`http://localhost:3001/styles/${id}`)
       .then((response) => {
         setProductImage(response.data.results[0].photos[0].thumbnail_url);
       });
